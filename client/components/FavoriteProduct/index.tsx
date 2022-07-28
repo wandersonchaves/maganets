@@ -1,55 +1,20 @@
-import { HeartIcon } from '@heroicons/react/outline'
+import { XCircleIcon } from '@heroicons/react/outline'
 import Image from 'next/image'
+import { useEffect } from 'react'
 import { FavoriteProductsProps, useProduct } from '../ProductFavoriteContext'
+import { ProductItemProps } from '../ProductItem'
 
-export interface ProductItemProps {
-  product: {
-    id: number
-    sku: number
-    title: string
-    description: string
-    availableSizes: AvailableSizesProps
-    style: string
-    price: number
-    installments: number
-    currencyId: string
-    currencyFormat: string
-    isFreeShipping: boolean
-    image: string
-  }
-}
-
-interface AvailableSizesProps {
-  S: number
-  G: number
-  GG: number
-  GGG: number
-}
-
-export function ProductItem(props: ProductItemProps) {
-  const {
-    favoriteProduct,
-    handleAddItemToFavoriteProduct,
-    handleRemoveItemToFavoriteProduct
-  } = useProduct() as FavoriteProductsProps
-
-  const found = favoriteProduct.find(
-    (element) => element.id === props.product.id
-  )
+export function FavoriteProduct(props: ProductItemProps) {
+  const { handleRemoveItemToFavoriteProduct } =
+    useProduct() as FavoriteProductsProps
 
   return (
     <div key={props.product.id} className='group relative'>
       <button
         className='absolute z-10 cursor-pointer bg-black rounded-b-full'
-        onClick={
-          found
-            ? () => handleRemoveItemToFavoriteProduct(props.product.id)
-            : () => handleAddItemToFavoriteProduct(props.product)
-        }
+        onClick={() => handleRemoveItemToFavoriteProduct(props.product.id)}
       >
-        <HeartIcon
-          className={'w-8 h-8 ' + (found ? 'fill-red-500' : 'fill-white')}
-        />
+        <XCircleIcon className='w-8 h-8 fill-red-600' />
       </button>
       <div className='w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none'>
         <Image
