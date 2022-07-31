@@ -1,4 +1,10 @@
-import { createContext, ReactNode, useContext, useState } from 'react'
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState
+} from 'react'
 
 interface ProductContextType {
   id: number
@@ -71,6 +77,14 @@ export function ProductFavoriteProvider({ children }: Props) {
     []
   )
 
+  useEffect(() => {
+    const favoriteProductLocal = localStorage.getItem('favoriteProduct')
+
+    if (favoriteProductLocal) {
+      setFavoriteProduct(JSON.parse(favoriteProductLocal))
+    }
+  }, [])
+
   const handleAddItemToFavoriteProduct = (atualProduct: ProductContextType) => {
     const found = favoriteProduct.find(
       (element) => element.id === atualProduct.id
@@ -100,6 +114,7 @@ export function ProductFavoriteProvider({ children }: Props) {
       }
 
       setFavoriteProduct([...favoriteProduct, newFavoriteProduct])
+      localStorage.setItem('favoriteProduct', JSON.stringify(favoriteProduct))
     }
   }
 
@@ -108,6 +123,7 @@ export function ProductFavoriteProvider({ children }: Props) {
       (productItem) => productItem.id !== id
     )
     setFavoriteProduct(filteredFavoriteProduct)
+    localStorage.setItem('favoriteProduct', JSON.stringify(favoriteProduct))
   }
 
   return (
