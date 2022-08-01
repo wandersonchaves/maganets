@@ -1,6 +1,16 @@
 import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
-import { XIcon, HeartIcon } from '@heroicons/react/outline'
+import {
+  XIcon,
+  HeartIcon,
+  LocationMarkerIcon,
+  PhoneIcon
+} from '@heroicons/react/outline'
+import {
+  PhoneIcon as PhoneIconSolid,
+  LocationMarkerIcon as LocationMarkerIconSolid,
+  HeartIcon as HeartIconSolid
+} from '@heroicons/react/solid'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -16,6 +26,27 @@ export function Header() {
           </div>
 
           <form method='GET' className='w-9/12'>
+            <div className='flex justify-between'>
+              <span className='flex text-white'>
+                <LocationMarkerIconSolid className='h-5 w-5 center' /> Cidade:
+                São Paulo
+              </span>
+
+              <span className='flex text-white'>
+                <PhoneIconSolid className='h-5 w-5 center' /> Central de
+                atendimento
+              </span>
+
+              <Link
+                href='productfavorite'
+                className='ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700'
+              >
+                <span className='flex text-white'>
+                  <HeartIconSolid className='h-5 w-5 center' /> Lista de desejos
+                </span>
+              </Link>
+            </div>
+
             <div className='w-full relative text-gray-600 focus-within:text-gray-400'>
               <span className='absolute inset-y-0 left-0 flex items-center pl-2'>
                 <button
@@ -38,21 +69,12 @@ export function Header() {
               <input
                 type='search'
                 name='q'
-                className='w-full py-2 text-sm text-white bg-gray-900 rounded-md pl-10 focus:outline-none focus:bg-white focus:text-gray-900'
+                className='w-full py-2 text-sm text-white bg-white rounded-md pl-10 focus:outline-none focus:bg-white focus:text-gray-900'
                 placeholder='Search...'
                 autoComplete='off'
               />
             </div>
           </form>
-
-          <div className='hidden md:flex items-center justify-center md:flex-1 lg:w-0 bg-white rounded-full h-10'>
-            <Link
-              href='productfavorite'
-              className='ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700'
-            >
-              <HeartIcon className='h-5 w-5 center' />
-            </Link>
-          </div>
         </div>
       </div>
 

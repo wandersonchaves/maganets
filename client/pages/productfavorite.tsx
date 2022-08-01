@@ -4,8 +4,6 @@ import {
   FavoriteProductsProps,
   useProduct
 } from '@/components/ProductFavoriteContext'
-import { ProductItem } from '@/components/ProductItem'
-import { useState } from 'react'
 
 interface ProductProps {
   id: number

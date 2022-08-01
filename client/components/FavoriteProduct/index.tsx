@@ -1,6 +1,5 @@
 import { XCircleIcon } from '@heroicons/react/outline'
 import Image from 'next/image'
-import { useEffect } from 'react'
 import { FavoriteProductsProps, useProduct } from '../ProductFavoriteContext'
 import { ProductItemProps } from '../ProductItem'
 

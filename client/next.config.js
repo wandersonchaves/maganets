@@ -3,8 +3,13 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['tailwindui.com', 'images.unsplash.com', 'via.placeholder.com', 'unsplash.com'],
-  },
+    domains: [
+      'tailwindui.com',
+      'images.unsplash.com',
+      'via.placeholder.com',
+      'unsplash.com'
+    ]
+  }
 }
 
 module.exports = nextConfig
